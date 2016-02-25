@@ -151,7 +151,9 @@ SystemInfo.prototype = {
             this.userAgent.isFake = true;
             this.browser = new Browser("Opera", window.opera.version(), "Presto");
         }
-        if (window.Components && (empty || !/(Firefox|Netscape)/.test(ua))) {
+        /* ---- window.Componentsがひ水晶になったため、使わない -----*/
+        //if (window.Components && (empty || !/(Firefox|Netscape)/.test(ua))) {
+        if (empty || !/(Firefox|Netscape)/.test(ua)) {
             this.userAgent.isFake = true;
             this.browser = new Browser("Firefox", undefined, "Gecko");
         }
@@ -159,7 +161,9 @@ SystemInfo.prototype = {
             this.userAgent.isFake = true;
             this.browser = new Browser("Google Chrome", undefined, "WebKit");
         }
-        if (document.defaultView && document.defaultView.getComputedStyle && !window.Components && !window.opera && !window.chrome && !document.documentMode && (empty || !/Safari|CriOS|Chrome|Opera/.test(ua))) {
+        /* ---- window.Componentsがひ水晶になったため、使わない -----*/
+        //if (document.defaultView && document.defaultView.getComputedStyle && !window.Components && !window.opera && !window.chrome && !document.documentMode && (empty || !/Safari|CriOS|Chrome|Opera/.test(ua))) {
+        if (document.defaultView && document.defaultView.getComputedStyle && !window.opera && !window.chrome && !document.documentMode && (empty || !/Safari|CriOS|Chrome|Opera/.test(ua))) {
             this.userAgent.isFake = true;
             this.browser = new Browser("Safari", undefined, "WebKit");
         }
